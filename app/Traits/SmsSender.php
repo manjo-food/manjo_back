@@ -6,25 +6,21 @@ use Ipe\Sdk\Facades\SmsIr;
 
 trait SmsSender
 {
-    public function sendTextSms($messageText, $mobile, $sendDateTime = null)
+    public function SMS($messageText, $mobile)
     {
-        $lineNumber = "30007732010229";
+        $lineNumber = "90003591";
+        $sendDateTime = null;
         $mobiles[0] = $mobile;
 
         SmsIr::bulkSend($lineNumber, $messageText, $mobiles, $sendDateTime);
 
     }
 
-    public function sendOtp($otp, $mobile)
+    public function sendOtpTemp($otp)
     {
-        $templateId = 647871;
-        $parameters = [
-            [
-                "name" => "Code",
-                "value" => $otp
-            ]
-        ];
+        $text = " کد تایید شما: $otp \n" .
+            "مانجو سوخاری\n";
 
-        SmsIr::verifySend($mobile, $templateId, $parameters);
+        return $text;
     }
 }

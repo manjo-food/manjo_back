@@ -20,10 +20,11 @@ class OtpController extends Controller
             return $this->error(Status::OPERATION_ERROR, __('messages.otp_already_sent'));
         }
         $otp = rand(1000, 9999);
+
         Redis::set('otp.' . $request->phone, json_encode(['code' => $otp, 'used' => false]), 'EX', 60 * 2); // 2 min
 
         if (env('SEND_SMS') == 1) {
-            $this->sendOtp($otp, $request->phone);
+            $this->SMS($this->sendOtpTemp($otp), $request->phone);
         }
 
         return $this->success(__('messages.otp_sent'));

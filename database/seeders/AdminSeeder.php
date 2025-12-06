@@ -18,11 +18,10 @@ class AdminSeeder extends Seeder
         $admin = User::query()->firstOrCreate([
             'username' => 'Admin',
         ], [
-            'password' => Hash::make('31<|11$$nhBl'),
-            'phone' => '09999999999',
+            'phone' => '09184185136',
         ]);
 
-        $adminRole = Role::query()->where('name', 'super_admin')->first();
+        $adminRole = Role::query()->where('name', 'admin')->first();
 
         $admin->roles()->syncWithoutDetaching([$adminRole->id]);
     }
