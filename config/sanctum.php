@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'expiration' => null,
+    'expiration' => 60 * 24 * 60, //// Personal access tokens expire in 60 days
 
     /*
     |--------------------------------------------------------------------------
